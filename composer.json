@@ -19,7 +19,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Huawei_Push\\": "src/"
+      "HuaweiPush\\": "src/"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:liutongke/Huawei_Push.git"
+    }
+  ]
 }

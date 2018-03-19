@@ -1,11 +1,6 @@
 {
-  "name": "huawei_push/keke",
-  "description": "华为推送业务，对华为手机业务推送",
-  "keywords": [
-    "huaweipush",
-    "huawei_push"
-  ],
-  "type": "library",
+  "name": "huawei/push",
+  "description": "this is test",
   "license": "MIT",
   "authors": [
     {
@@ -19,13 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "HuaweiPush\\": "src/"
+      "huawei\\push\\": "push/src/"
     }
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git@github.com:liutongke/Huawei_Push.git"
-    }
-  ]
+  }
 }

@@ -2,13 +2,14 @@
   "name": "mobile/push",
   "description": "this is test",
   "license": "MIT",
+  "version": "dev-master",
   "authors": [
     {
       "name": "keke",
       "email": "liutongke@live.com"
     }
   ],
-  "minimum-stability": "1.0",
+  "minimum-stability": "dev",
   "require": {
     "php": ">=7.0.0"
   },

@@ -165,7 +165,6 @@ class Jpush
         return $data;
     }
 
-    // 供外部调用的推送方法 目标用户是否全部(别名之类的) 标题 主要内容体 角标 区分安卓和iOS
     public function send_res($result)
     {
         if ($result) {

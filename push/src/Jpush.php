@@ -26,7 +26,7 @@
  *——————————————————代码永无BUG —————————————————
  */
 
-namespace huawei\push;
+namespace mobile\push;
 
 class Jpush
 {
@@ -161,6 +161,7 @@ class Jpush
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         $data = curl_exec($ch);
         curl_close($ch);
+
         return $data;
     }
 
@@ -175,39 +176,72 @@ class Jpush
                 echo $res_arr['error']['message'];
                 // 错误码
                 $error_code = $res_arr['error']['code'];
-                switch ($error_code) {
+                switch ((int)$error_code) {
                     case 200:
-                        $message = '发送成功！';
+                        $message = [
+                            'msg' => '发送成功',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1000:
-                        $message = '失败(系统内部错误)';
+                        $message = [
+                            'msg' => '失败(系统内部错误)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1001:
-                        $message = '失败(只支持 HTTP Post 方法，不支持 Get 方法)';
+                        $message = [
+                            'msg' => '失败(只支持 HTTP Post 方法，不支持 Get 方法)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1002:
-                        $message = '失败(缺少了必须的参数)';
+                        $message = [
+                            'msg' => '失败(缺少了必须的参数)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1003:
-                        $message = '失败(参数值不合法)';
+                        $message = [
+                            'msg' => '失败(参数值不合法)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1004:
-                        $message = '失败(验证失败)';
+                        $message = [
+                            'msg' => '失败(验证失败)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1005:
-                        $message = '失败(消息体太大)';
+                        $message = [
+                            'msg' => '失败(消息体太大)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1008:
-                        $message = '失败(appkey参数非法)';
+                        $message = [
+                            'msg' => '失败(appkey参数非法)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1020:
-                        $message = '失败(只支持 HTTPS 请求)';
+                        $message = [
+                            'msg' => '失败(只支持 HTTPS 请求)',
+                            'code' => $error_code
+                        ];
                         break;
                     case 1030:
-                        $message = '失败(内部服务超时)';
+                        $message = [
+                            'msg' => '失败(内部服务超时)',
+                            'code' => $error_code
+                        ];
                         break;
                     default:
-                        $message = '失败(返回其他状态，目前不清楚额，请联系开发人员！)';
+                        $message = [
+                            'msg' => '失败(返回其他状态，目前不清楚额，请联系开发人员！)',
+                            'code' => $error_code
+                        ];
                         break;
                 }
             } else {
@@ -218,9 +252,13 @@ class Jpush
             }
         } else {
             //接口调用失败或无响应
-            $message = '接口调用失败或无响应';
+            $message = [
+                'msg' => "'接口调用失败或无响应'！",
+                'code' => '400'
+            ];
         }
 
         return $message;
+
     }
 }

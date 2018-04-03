@@ -1,58 +1,58 @@
  #极光推送使用规则
-Installation
-使用 Composer 安装
-在项目中的 composer.json 文件中添加依赖：
-  "require": {
-    "mobile/push": "dev-master"
-  },
-执行 $ composer update 进行安装。
+Installation<br />
+使用 Composer 安装<br />
+在项目中的 composer.json 文件中添加依赖：<br />
+  "require": {<br />
+    "mobile/push": "dev-master"<br />
+  },<br />
+执行 $ composer update 进行安装。<br />
 
-引入 use huawei\push\Jpush;
-$app_key = '***';
-$master_secret = '***';
-$jpush = new Jpush($app_key, $master_secret);
-#通知别名推送(安卓)
-$jpush->setPlatform('android')
-    //设置别名
-    ->addAlias($alias)
-    //推送的消息体,安卓调用androidNotification，iOS调用iosNotification
-    ->androidNotification(
-        [
-            //这里指定了，则会覆盖上级统一指定的 alert 信息；内容可以为空字符串，则表示不展示到通知栏。
-            "alert" => '山有木兮木有枝',
-            //这里自定义 JSON 格式的 Key/Value 信息，以供业务使用
-            'extras' => [
-                'content' => '心悦君兮君不知',
-                "badge" => (int)1,
-            ]
-        ])
-    ->send();
+引入 use huawei\push\Jpush;<br />
+$app_key = '***';<br />
+$master_secret = '***';<br />
+$jpush = new Jpush($app_key, $master_secret);<br />
+#通知别名推送(安卓)<br />
+$jpush->setPlatform('android')<br />
+    //设置别名<br />
+    ->addAlias($alias)<br />
+    //推送的消息体,安卓调用androidNotification，iOS调用iosNotification<br />
+    ->androidNotification(<br />
+        [<br />
+            //这里指定了，则会覆盖上级统一指定的 alert 信息；内容可以为空字符串，则表示不展示到通知栏。<br />
+            "alert" => '山有木兮木有枝',<br />
+            //这里自定义 JSON 格式的 Key/Value 信息，以供业务使用<br />
+            'extras' => [<br />
+                'content' => '心悦君兮君不知',<br />
+                "badge" => (int)1,<br />
+            ]<br />
+        ])<br />
+    ->send();<br />
     
-#通知别名推送(iOS)
-$jpush->setPlatform('ios')
-    //设置别名
-    ->addAlias($alias)
-    //推送的消息体,安卓调用androidNotification，iOS调用iosNotification
-    ->iosNotification(
-        [
-            //这里指定了，则会覆盖上级统一指定的 alert 信息；内容可以为空字符串，则表示不展示到通知栏。
-            "alert" => '山有木兮木有枝',
-            //这里自定义 JSON 格式的 Key/Value 信息，以供业务使用
-            'extras' => [
-                'content' => '心悦君兮君不知',
-                "badge" => (int)1,
-            ]
-        ])
-    ->send();
+#通知别名推送(iOS)<br />
+$jpush->setPlatform('ios')<br />
+    //设置别名<br />
+    ->addAlias($alias)<br />
+    //推送的消息体,安卓调用androidNotification，iOS调用iosNotification<br />
+    ->iosNotification(<br />
+        [<br />
+            //这里指定了，则会覆盖上级统一指定的 alert 信息；内容可以为空字符串，则表示不展示到通知栏。<br />
+            "alert" => '山有木兮木有枝',<br />
+            //这里自定义 JSON 格式的 Key/Value 信息，以供业务使用<br />
+            'extras' => [<br />
+                'content' => '心悦君兮君不知',<br />
+                "badge" => (int)1,<br />
+            ]<br />
+        ])<br />
+    ->send();<br />
     
-#通知广播推送
-$jpush->setPlatform('all')
-            ->addAllAudience()
-            ->allNotification([
-                //这里指定了，则会覆盖上级统一指定的 alert 信息；内容可以为空字符串，则表示不展示到通知栏。
-                "alert" => '病起萧萧两鬓华',
-                //这里自定义 JSON 格式的 Key/Value 信息，以供业务使用
-                'android' => [
+#通知广播推送<br />
+$jpush->setPlatform('all')<br />
+            ->addAllAudience()<br />
+            ->allNotification([<br />
+                //这里指定了，则会覆盖上级统一指定的 alert 信息；内容可以为空字符串，则表示不展示到通知栏。<br />
+                "alert" => '病起萧萧两鬓华',<br />
+                //这里自定义 JSON 格式的 Key/Value 信息，以供业务使用<br />
+                'android' => [<br />
                     'extras' => [
                         'content' => '卧看残月上窗纱',
                         "badge" => (int)1,

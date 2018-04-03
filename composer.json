@@ -1,5 +1,5 @@
 {
-  "name": "huawei/push",
+  "name": "mobile/push",
   "description": "this is test",
   "license": "MIT",
   "authors": [
@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "huawei\\push\\": "push/src/"
+      "mobile\\push\\": "push/src/"
     }
   }
 }

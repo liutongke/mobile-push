@@ -33,7 +33,7 @@ class Jpush
     // 推送的接口
     private $url = "https://api.jpush.cn/v3/push";
 
-    private $data = array();
+    private $data = [];
 
     // 若实例化的时候传入相应的值，则按新的相应值进行配置推送
     public function __construct($app_key = null, $master_secret = null, $url = null)

@@ -75,7 +75,7 @@ class Jpush
         return $this;
     }
 
-    //iOS消息体
+    //iOS通知消息体
     public function iosNotification($msg)
     {
         $this->data['notification'] = [
@@ -85,7 +85,7 @@ class Jpush
         return $this;
     }
 
-    //安卓消息体
+    //安卓通知消息体
     public function androidNotification($msg)
     {
         $this->data['notification'] = [
@@ -95,10 +95,18 @@ class Jpush
         return $this;
     }
 
-    //发送给全部
+    //发送通知给全部
     public function allNotification($msg)
     {
         $this->data['notification'] = $msg;
+
+        return $this;
+    }
+
+    //安卓自定义
+    public function Message($msg)
+    {
+        $this->data['message'] = $msg;
 
         return $this;
     }

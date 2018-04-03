@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "mobile\\push\\": "push/src/"
+      "mobile\\push\\": "src/"
     }
   }
 }

@@ -126,12 +126,9 @@ class Jpush
             // 指定 APNS 通知发送环境：false开发环境，true生产环境
             "apns_production" => true,
         ];
-//        echo '<pre />';
-//        var_dump($this->data);
-//        echo '<pre />';
+
         $param = json_encode($this->data);
-//        var_dump($param);
-//        die;
+
         $res = $this->push_curl($param, $header);
 
         if ($res) {         // 得到返回值--成功已否后面判断
@@ -148,8 +145,6 @@ class Jpush
             return false;
         }
         $postUrl = $this->url;
-        $curlPost = $param;
-//        var_dump($curlPost);
         // 初始化curl
         $ch = curl_init();
         // 抓取指定网页
@@ -160,17 +155,17 @@ class Jpush
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         // post提交方式
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
         // 增加 HTTP Header（头）里的字段
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         // 终止从服务端进行验证
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         // 运行curl
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-        $data = curl_exec($ch);
+        $curl_res = curl_exec($ch);
         curl_close($ch);
 
-        return $data;
+        return $curl_res;
     }
 
     public function send_res($result)

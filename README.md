@@ -1,17 +1,20 @@
-极光推送使用规则
+# 极光推送使用规则
 Installation
 使用 Composer 安装
 在项目中的 composer.json 文件中添加依赖：
-“require”: {
-“mobile/push”: “dev-master”
-},
+    “require”: {
+    “mobile/push”: “dev-master”
+    },
 执行 $ composer update 进行安装。
 引入 use huawei\push\Jpush;
+```php
 $app_key = ‘‘;
 $master_secret = ‘‘;
 $jpush = new Jpush($app_key, $master_secret);
+```
 
-通知别名推送(安卓)
+## 通知别名推送(安卓)
+```php
 $jpush->setPlatform('android')
 //设置别名
 ->addAlias($alias)
@@ -27,7 +30,9 @@ $jpush->setPlatform('android')
         ]
     ])
 ->send();
-通知别名推送(iOS)
+```
+## 通知别名推送(iOS)
+```php
 $jpush->setPlatform('ios')
 //设置别名
 ->addAlias($alias)
@@ -43,7 +48,9 @@ $jpush->setPlatform('ios')
         ]
     ])
 ->send();
-通知广播推送
+```
+## 通知广播推送
+```php
 $jpush->setPlatform('all')
         ->addAllAudience()
         ->allNotification([
@@ -66,3 +73,4 @@ $jpush->setPlatform('all')
             ],
         ])
         ->send();
+```

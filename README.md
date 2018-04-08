@@ -8,8 +8,8 @@ Installation
 执行 $ composer update 进行安装。
 引入 use huawei\push\Jpush;
 ```php
-$app_key = ‘‘;
-$master_secret = ‘‘;
+$app_key = '***';
+$master_secret = '***';
 $jpush = new Jpush($app_key, $master_secret);
 ```
 

@@ -162,10 +162,11 @@ class Jpush
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         // 运行curl
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-        $curl_res = curl_exec($ch);
+        $response = curl_exec($ch);
+
         curl_close($ch);
 
-        return $curl_res;
+        return $response;
     }
 
     public function send_res($result)

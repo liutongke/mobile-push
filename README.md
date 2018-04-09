@@ -77,7 +77,7 @@ $jpush->setPlatform('all')
         ])
         ->send();
 ```
-##送达统计
+## 送达统计
 ```php
 $jreport = new Jreport($app_key, $master_secret);
 $haha = $jreport->receivedUrl()

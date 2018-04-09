@@ -2,12 +2,15 @@
 Installation
 使用 Composer 安装
 在项目中的 composer.json 文件中添加依赖：
-    “require”: {
+```shell
+“require”: {
     “mobile/push”: “dev-master”
-    },
+},
+```
 执行 $ composer update 进行安装。
-引入 use huawei\push\Jpush;
+引入 
 ```php
+use huawei\push\Jpush;
 $app_key = '***';
 $master_secret = '***';
 $jpush = new Jpush($app_key, $master_secret);

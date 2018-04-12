@@ -4,7 +4,7 @@ Installation
 在项目中的 composer.json 文件中添加依赖：
 ```shell
 “require”: {
-    “mobile/push”: “dev-master”
+    "mobile/push": "^1.0"
 },
 ```
 执行 $ composer update 进行安装。

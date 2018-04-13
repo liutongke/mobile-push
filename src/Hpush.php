@@ -36,6 +36,9 @@ class Hpush
      * 对于华为服务器的返回值
      */
 
+    // 缓存的名称
+    const CACHE_NAME = 'huawei_push';
+
     private $data = [];
 
     // 若实例化的时候传入相应的值，则按新的相应值进行配置推送
@@ -43,14 +46,6 @@ class Hpush
     {
         if ($client_secret) $this->client_secret = $client_secret;
         if ($client_id) $this->client_id = $client_id;
-    }
-
-    //获取token
-    public function GetHuaweiToken()
-    {
-        //引入文件
-        $ht = new Http($this->client_secret, $this->client_id);
-        return $ht->GetToken();
     }
 
     //
@@ -308,5 +303,28 @@ class Hpush
         }
 
         return $message;
+    }
+
+    /***********************   token操作   **********************************/
+
+    /**
+     * 返回token
+     */
+    public function getToken()
+    {
+        $ht = new Http($this->client_secret, $this->client_id);
+        $return = $ht->GetToken();
+
+        if (Cache::has(self::CACHE_NAME)) {
+            return Cache::get(self::CACHE_NAME);
+        } else {
+            //引入文件
+            $ht = new Http($this->client_secret, $this->client_id);
+            $return = $ht->GetToken();
+            Cache::put(self::CACHE_NAME, $return['access_token'], (int)($return['expires_in'] / 60));
+
+            return $return['access_token'];
+
+        }
     }
 }

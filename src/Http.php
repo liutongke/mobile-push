@@ -40,6 +40,9 @@ class Http
      * http请求推送token参数
      */
 
+    // 缓存的名称
+    const CACHE_NAME = 'huawei_push';
+    
     //请求地址
     private $get_curl = 'https://login.cloud.huawei.com/oauth2/v2/token';
 

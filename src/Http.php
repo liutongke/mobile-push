@@ -42,7 +42,7 @@ class Http
 
     // 缓存的名称
     const CACHE_NAME = 'huawei_push';
-    
+
     //请求地址
     private $get_curl = 'https://login.cloud.huawei.com/oauth2/v2/token';
 
@@ -141,9 +141,6 @@ class Http
                     break;
             }
         } else {
-//            echo '<pre />';
-//            var_dump($res_arr);
-//            echo '<pre />';
             //去除转义的字符
             $token = str_replace("\\", "", $res_arr['access_token']);
             //token写入缓存中

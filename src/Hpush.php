@@ -51,11 +51,11 @@ class Hpush
     //
     public function setMsg($type, $body)
     {
-//        取值含义和说明：
-//
-//        1 透传异步消息
-//
-//        3 系统通知栏异步消息
+        /*
+         * 取值含义和说明：
+         * 1 透传异步消息
+         * 3 系统通知栏异步消息
+         */
         $this->data['hps']['msg'] = [
             'type' => (int)$type,
             'body' => $body
@@ -66,14 +66,12 @@ class Hpush
 
     public function setAction($type, $param)
     {
-//        1 自定义行为：行为由参数intent定义
-//
-//        2 打开URL：URL地址由参数url定义
-//
-//        3 打开APP：默认值，打开App的首页
-//
-//        注意：富媒体消息开放API不支持
-
+        /*
+         * 1 自定义行为：行为由参数intent定义
+         * 2 打开URL：URL地址由参数url定义
+         * 3 打开APP：默认值，打开App的首页
+         * 注意：富媒体消息开放API不支持
+         */
         if ($type == '1') {
             $this->data['hps']['action'] = [
                 'type' => (int)$type,
@@ -129,22 +127,10 @@ class Hpush
             ]);
         }
 
-        //token值
-//        $huawei_token = Redis::get('huawei_push_token');
-//        \需要去除
-        $huawei_token = 'CFrC7eMGeKzMLOaoTMbqz3AyieUG7N/tzQLdmhvqCzpDMe/xKbew88oRWNrQW0phMRlJFfWlYWRISMQ12zC9qQ==';
-//        $payload = json_encode($this->data);
-
-        //token需要urlencode编码
-        if ($huawei_token) {
-            return self::huawei_curl(urlencode($huawei_token), $device_token_list, json_encode($this->data));
-        } else {
-//            $huawei_token = $this->GetHuaweiToken();
-            return self::huawei_curl(urlencode($this->GetHuaweiToken()), $device_token_list, json_encode($this->data));
-        }
+        return self::huawei_curl(urlencode($this->getToken()), $device_token_list, json_encode($this->data));
     }
 
-    //curl请求
+//curl请求
     public function huawei_curl($token, $device_token_list, $payload)
     {
         //其中nsp_ctx为url-encoding编码，解码后为： nsp_ctx={"ver":"1", "appId":"10923253325"}
@@ -186,7 +172,7 @@ class Hpush
         }
     }
 
-    //错误的处理
+//错误的处理
     public function errorHandling($msg)
     {
         $msg = json_decode($msg, true);
@@ -312,19 +298,12 @@ class Hpush
      */
     public function getToken()
     {
-        $ht = new Http($this->client_secret, $this->client_id);
-        $return = $ht->GetToken();
-
         if (Cache::has(self::CACHE_NAME)) {
             return Cache::get(self::CACHE_NAME);
         } else {
             //引入文件
             $ht = new Http($this->client_secret, $this->client_id);
-            $return = $ht->GetToken();
-            Cache::put(self::CACHE_NAME, $return['access_token'], (int)($return['expires_in'] / 60));
-
-            return $return['access_token'];
-
+            return $ht->GetToken();
         }
     }
 }

@@ -28,6 +28,7 @@
 namespace mobile\push;
 
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 
 class Hpush
 {
@@ -73,21 +74,21 @@ class Hpush
          * 注意：富媒体消息开放API不支持
          */
         if ($type == '1') {
-            $this->data['hps']['action'] = [
+            $this->data['hps']['msg']['action'] = [
                 'type' => (int)$type,
                 'param' => [
                     'intent' => $param
                 ]
             ];
         } elseif ($type == '2') {
-            $this->data['hps']['action'] = [
+            $this->data['hps']['msg']['action'] = [
                 'type' => (int)$type,
                 'param' => [
                     'url' => $param
                 ]
             ];
         } else {
-            $this->data['hps']['action'] = [
+            $this->data['hps']['msg']['action'] = [
                 'type' => (int)$type,
                 'param' => [
                     'appPkgName' => $param
@@ -108,7 +109,7 @@ class Hpush
         } else {
             $this->data['hps']['ext'] = [
                 'biTag' => $Trump,
-                'customize' => [$ext]
+                'customize' => json_decode($ext)
             ];
         }
 
@@ -116,7 +117,7 @@ class Hpush
     }
 
     //进行推送请求
-    public function send_huawei_push($device_token)
+    public function send($device_token)
     {
         //检查是否是数组
         if (is_array($device_token)) {
@@ -133,9 +134,11 @@ class Hpush
 //curl请求
     public function huawei_curl($token, $device_token_list, $payload)
     {
-        //其中nsp_ctx为url-encoding编码，解码后为： nsp_ctx={"ver":"1", "appId":"10923253325"}
-//        ver：用来解决大版本升级的兼容问题;
-//        appId：用户在联盟申请的APPID;
+        /*
+         * 其中nsp_ctx为url-encoding编码，解码后为： nsp_ctx={"ver":"1", "appId":"10923253325"}
+         * ver：用来解决大版本升级的兼容问题;
+         * appId：用户在联盟申请的APPID;
+         */
         $nsp_ctx = json_encode([
             'ver' => '1',
             'appId' => $this->client_id

@@ -87,7 +87,7 @@ $haha = $jreport->receivedUrl()
     ->send();
 ```
 # 华为推送基于laravel5.4开发
-//PUSH消息类型
+## PUSH消息类型
 ```php
 $hpush = new Hpush('***', '***');
 $res = $hpush->setMsg('1', [

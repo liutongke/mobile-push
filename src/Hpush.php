@@ -131,7 +131,7 @@ class Hpush
         return self::huawei_curl(urlencode($this->getToken()), $device_token_list, json_encode($this->data));
     }
 
-//curl请求
+    //curl请求
     public function huawei_curl($token, $device_token_list, $payload)
     {
         /*
@@ -175,7 +175,7 @@ class Hpush
         }
     }
 
-//错误的处理
+    //错误的处理
     public function errorHandling($msg)
     {
         $msg = json_decode($msg, true);
@@ -296,7 +296,7 @@ class Hpush
 
     /***********************   token操作   **********************************/
 
-    /**
+    /*
      * 返回token
      */
     public function getToken()

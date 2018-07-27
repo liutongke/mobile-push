@@ -26,7 +26,7 @@
  *——————————————————代码永无BUG —————————————————
  */
 
-namespace mobile\push;
+namespace mobile\push\jpush;
 
 class Jpush
 {

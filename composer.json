@@ -1,10 +1,9 @@
 {
   "name": "mobile/push",
-  "description": "极光推送、华为推送",
+  "description": "极光推送",
   "license": "MIT",
   "keywords": [
     "极光推送",
-    "华为推送",
     "推送"
   ],
   "authors": [

@@ -10,7 +10,7 @@ Installation
 执行 $ composer update 进行安装。
 引入 
 ```php
-use huawei\push\Jpush;
+use \mobile\push\jpush\Jpush;
 $app_key = '***';
 $master_secret = '***';
 $jpush = new Jpush($app_key, $master_secret);
@@ -85,13 +85,4 @@ $haha = $jreport->receivedUrl()
         '1654967444'
     ])
     ->send();
-```
-# 华为推送基于laravel5.4开发
-## PUSH消息类型
-```php
-$hpush = new Hpush('***', '***');
-$res = $hpush->setMsg('1', [
-    'test' => 'test'
-])
-    ->send('目标设备Token');
 ```
